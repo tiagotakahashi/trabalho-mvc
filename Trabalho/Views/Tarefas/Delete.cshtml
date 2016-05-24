@@ -1,0 +1,64 @@
+﻿@model Trabalho.Models.Tarefa
+
+@{
+    ViewBag.Title = "Exclusão";
+}
+
+<h2>Excluir</h2>
+
+<h3>Deseja realmente excluir esta tarefa?</h3>
+<div>
+    <h4>Tarefa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Concluido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Concluido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataString)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataString)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "Index")
+        </div>
+    }
+</div>

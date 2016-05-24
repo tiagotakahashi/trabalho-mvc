@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Página inicial";
+}
+
+<div class="jumbotron">
+    <h1>Trabalho MVC</h1>
+    <p class="lead">Foi alterado o arquivo de template 'Controller.cs.t4' da pasta MvcControllerWithContext.</p>
+    <p>Sera gerado o controller com o Hub do SignalR, sem comentários e com injeção de dependência do repositório criado.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Requisitos do trabalho atendidos:</h2>
+        <p>
+            -Alterado um template T4. </br>
+            -Criado um cadastro simples com relacionamento de um pra muitos. </br>
+            -Executados os comandos: Enable-Migrations, Add-Migration, Update-Database. </br>
+            -Utilizado SignalR para notificar os usuários logados sobre as tarefas. Foi implementado controle para não avisar o próprio usuário que criou/alterou/deletou a tarefa. </br>
+        </p>
+        <p><a class="btn btn-default" href='@Url.Action("Index", "Tarefas")'>Acessar cadastro de tarefas</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Get more libraries</h2>
+        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Web Hosting</h2>
+        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    </div>
+</div>

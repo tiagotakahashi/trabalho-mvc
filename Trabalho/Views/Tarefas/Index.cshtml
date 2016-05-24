@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Trabalho.Models.Tarefa>
+
+@{
+    ViewBag.Title = "Resumo";
+}
+
+<h2>Resumo</h2>
+
+<p>
+    @Html.ActionLink("Nova tarefa", "Create")
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Concluido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataString)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+<tbody>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao) 
+        </td>
+        <td id="@item.Id">
+            @Html.DisplayFor(modelItem => item.Concluido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomeUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataString)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+            <a href="#" onClick="done(@item.Id);">Done</a>
+            @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Excluir", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+</tbody>
+</table>
+
+@section scripts {
+   <script>
+       conn.client.refresh = function (list) {
+           var html = '';
+
+           $.each(list, function (k, v) {
+               var concluido = '<input type="checkbox" ' + (v.Concluido ? 'checked' : '') + ' disabled />';
+               html += [
+               '<tr>',
+                   '<td>' + v.Nome + '</td>',
+                   '<td>' + v.Descricao + '</td>',
+                   '<td id="' + v.Id + '">' + concluido + '</td>',
+                   '<td>' + v.NomeUsuario + '</td>',
+                   '<td>' + v.DataString + '</td>',
+                   '<td>',
+                       '<a href="@Url.Action("Edit")/' + v.Id + '">Editar</a> |',
+                       '<a href="#" onClick="done(' + v.Id + ');">Concluir</a> |',
+                       '<a href="@Url.Action("Details")/' + v.Id + '">Detalhes</a> |',
+                       '<a href="@Url.Action("Delete")/' + v.Id + '">Excluir</a>',
+                   '</td>',
+               '<tr>'
+               ].join('');
+           });
+
+           $('table tbody').empty().append(html);
+       }
+
+       function done(id){
+           conn.server.done(id);
+       }
+
+       conn.client.done = function (id){
+           $('td#' + id + ' > input').attr('checked',true);
+       }
+
+   </script>
+}
